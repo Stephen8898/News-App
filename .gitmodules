@@ -1,0 +1,3 @@
+[submodule "news-app"]
+	path = news-app
+	url = ./client/news-app
