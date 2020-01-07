@@ -12,8 +12,8 @@ export default class About extends Vue {}
 
 <style scoped>
 .about {
-margin-left: 50%;
-margin-right: 50%;
-margin-top: 10px
+  margin-left: 50%;
+  margin-right: 50%;
+  margin-top: 10px;
 }
 </style>
