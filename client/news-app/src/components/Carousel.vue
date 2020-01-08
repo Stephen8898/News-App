@@ -1,7 +1,7 @@
 <template>
   <div style="margin: auto">
     <v-card max-width="fit" class="mx-auto">
-      <v-carousel hide-delimiters height="350" :interval="8000">
+      <v-carousel hide-delimiters height="350" :interval="8000" cycle>
         <v-carousel-item
           class="c-item"
           v-for="(item, i) in items"

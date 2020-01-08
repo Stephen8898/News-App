@@ -5,7 +5,7 @@
         <h1>Top News Today</h1></v-toolbar-title
       >
     </v-app-bar>
-    <v-content style="background-color:#EEEEEE">
+    <v-content style="background-color:#EEEEEE" scrollable>
       <v-container>
         <div style="margin: 5%; margin-top: 1%; margin-bottom: 1%">
           <section class="info">
@@ -13,7 +13,8 @@
               This is a simple news application that I built using the NewsAPI.
               You can view the top trending news on the carousel, or you can use
               the search bar to get access to all top trending news globally on
-              any topic you type.
+              any topic you type. There you can add a little comment on the
+              article shring your thoughts and opinions.
             </p>
           </section>
         </div>

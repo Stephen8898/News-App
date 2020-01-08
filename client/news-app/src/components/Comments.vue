@@ -14,6 +14,7 @@
           </v-btn>
           <v-spacer></v-spacer>
           <v-btn
+            text
             class="comment-btn"
             @click="
               dialog2 = !dialog2;
@@ -27,13 +28,17 @@
     </v-dialog>
     <v-row justify="center">
       <v-container>
-        <v-dialog v-model="dialog2" max-width="600px">
+        <v-dialog v-model="dialog2" scrollable max-width="600px">
           <v-card>
+            <!-- <v-card-actions class="close">
+            <v-btn @click="dialog2 = false"><v-icon>mdi-close</v-icon></v-btn>
+            </v-card-actions> -->
             <v-card-title>Share your thoughts</v-card-title>
             <div class="post-info">
-              <v-text-field v-model="name" :counter="10" label="Name">
+              <v-text-field v-model="name" :counter="10" label="Name" outlined>
               </v-text-field>
               <v-textarea
+                outlined
                 name="input-7-1"
                 v-model="body"
                 label="Post"
@@ -44,7 +49,7 @@
               </v-textarea>
               <v-card-actions>
                 <v-spacer></v-spacer>
-                <v-btn color="transparent" @click="createComment"
+                <v-btn color="#EEEEEE" @click="createComment"
                   >Post comment</v-btn
                 >
               </v-card-actions>
@@ -61,20 +66,23 @@
               >
                 <v-list-item three-line>
                   <v-list-item-content>
-                    <hr />
                     <div class="comment-txt">
-                      <v-list-item-title
-                        >name: {{ comment.name }}</v-list-item-title
-                      >
-                      <v-card-text>{{ comment.body }}</v-card-text>
+                      <v-list-item-title>{{ comment.name }}</v-list-item-title>
+                      <v-card-text style="height: 50px">{{
+                        comment.body
+                      }}</v-card-text>
                       <v-list-item-subtitle>{{
                         new Date(comment.date).toLocaleString()
                       }}</v-list-item-subtitle>
                     </div>
+                    <v-card-actions>
+                      <v-spacer></v-spacer>
+                      <v-btn icon>
+                        <v-icon>mdi-dots-vertical</v-icon>
+                      </v-btn>
+                    </v-card-actions>
+                    <hr />
                   </v-list-item-content>
-                  <v-btn dark icon>
-                    <v-icon>mdi-dots-vertical</v-icon>
-                  </v-btn>
                 </v-list-item>
               </v-card>
             </div>
@@ -93,6 +101,8 @@ export default class comments extends Vue {
   name: string = "";
   body: string = "";
   comments: Array<any> = [];
+  // A reactive prop. If the parent component is passing a value to the child componenet.
+  //prop sync is like @prop but it creates a getter and setter behind the scene.
   @PropSync("dialog", { type: Boolean }) syncedDialog!: Boolean;
   @PropSync("item", { type: Object }) syncedItem!: any;
   dialog2: Boolean = false;
@@ -170,5 +180,8 @@ hr {
 
 .comment-txt {
   padding: 5px;
+}
+
+.close {
 }
 </style>
