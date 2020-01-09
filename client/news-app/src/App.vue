@@ -14,7 +14,7 @@
               You can view the top trending news on the carousel, or you can use
               the search bar to get access to all top trending news globally on
               any topic you type. There you can add a little comment on the
-              article shring your thoughts and opinions.
+              article sharing your thoughts and opinions.
             </p>
           </section>
         </div>

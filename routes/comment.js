@@ -11,8 +11,8 @@ routes.post('/post_comment', (req,res) =>{
         body: req.body.body
     });
     comment.save() 
-    .then(resp => {
-        res.status(200).json({success: true, msg: 'Comment created'});
+    .then(comment => {
+        res.status(200).json({comment});
     })
     .catch(err => {
         res.status(400).json({success: false, msg: err});
@@ -28,8 +28,8 @@ routes.post('/reply/:comment_id/article/:article', (req, res) => {
         name: req.body.name,
         body: req.body.body,
     }).save()
-    .then(resp => {
-        res.status(200).json({success: true, msg: 'Reply Created'});
+    .then(reply => {
+        res.status(200).json({reply});
     })
     .catch(err => {
         res.status(400).json({success: false, msg: err});
@@ -49,8 +49,7 @@ routes.get('/replys/:comment_id', (req,res) => {
 });
 
 routes.get('/get_comments/:article', (req, res) => {
-    const query = {article: req.params.article};
-    Comment.find(query)
+    Comment.find({article: req.params.article })
     .then(comments => {
         res.status(200).json({comments});
     })

@@ -6,7 +6,7 @@ const CommentSchema = new Schema({
 
     article: {
         type: Schema.Types.Mixed,
-        default: {}
+        default: "None"
        
     },
 
@@ -16,8 +16,7 @@ const CommentSchema = new Schema({
     },
 
     name: {
-        type: String,
-        default: "Anonymous"
+        type: String
     },
 
     body: {

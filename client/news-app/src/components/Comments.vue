@@ -28,28 +28,28 @@
     </v-dialog>
     <v-row justify="center">
       <v-container>
-        <v-dialog v-model="dialog2" scrollable max-width="600px">
+        <v-dialog v-model="dialog2"  max-width="600px" >
           <v-card>
             <!-- <v-card-actions class="close">
             <v-btn @click="dialog2 = false"><v-icon>mdi-close</v-icon></v-btn>
             </v-card-actions> -->
             <v-card-title>Share your thoughts</v-card-title>
             <div class="post-info">
-              <v-text-field v-model="name" :counter="10" label="Name" outlined>
+              <v-text-field v-model="name" :counter="20" label="Name" outlined>
               </v-text-field>
               <v-textarea
                 outlined
                 name="input-7-1"
                 v-model="body"
                 label="Post"
-                value="The Woodman set to work at once, and so sharp was his axe that the tree was soon chopped nearly through."
                 hint="body"
+                v-on:keyup.13="createComment"
                 required
               >
               </v-textarea>
               <v-card-actions>
                 <v-spacer></v-spacer>
-                <v-btn color="#EEEEEE" @click="createComment"
+                <v-btn color="#EEEEEE" @click="createComment();"
                   >Post comment</v-btn
                 >
               </v-card-actions>
@@ -108,6 +108,10 @@ export default class comments extends Vue {
   dialog2: Boolean = false;
 
   createComment() {
+    if(this.name == ""){
+      this.name = "Anonymous";
+    }
+
     const data = {
       article: this.syncedItem.title,
       name: this.name,
@@ -122,10 +126,13 @@ export default class comments extends Vue {
       body: JSON.stringify(data)
     })
       .then(resp => resp.json())
-      .then(data => console.log(data))
+      .then(data => {
+        this.comments = this.comments.concat(data.comment);   
+      })
       .catch(err => {
-        console.log(err);
-      });
+        throw err});
+      this.name = "";
+      this.body = "";
   }
 
   getComments() {
@@ -138,8 +145,6 @@ export default class comments extends Vue {
       .then(data => data.json())
       .then(comment => {
         this.comments = comment.comments;
-
-        console.log(comment);
       })
       .catch(err => {
         throw err;
@@ -182,6 +187,6 @@ hr {
   padding: 5px;
 }
 
-.close {
-}
+/* .close {
+} */
 </style>
