@@ -31,7 +31,7 @@ app.use(cors());
 app.use("/api", news);
 app.use("/api/comment", comment);
 
-const PORT = 5000;
+const PORT = 4000;
 
 app.listen(PORT, () => {
   console.log(`app listening on ${PORT}`);

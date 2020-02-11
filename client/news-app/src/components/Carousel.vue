@@ -2,7 +2,12 @@
   <div style="margin: auto">
     <v-card max-width="fit" class="mx-auto">
       <v-carousel hide-delimiters height="350" :interval="8000" cycle>
-        <v-carousel-item class="c-item" v-for="(item, i) in items" :key="i" cycle>
+        <v-carousel-item
+          class="c-item"
+          v-for="(item, i) in items"
+          :key="i"
+          cycle
+        >
           <v-img
             class="carousel-img"
             height="100%"
@@ -38,7 +43,7 @@ export default class Carousel extends Vue {
   items: Array<any> = [];
 
   beforeCreate() {
-    fetch(`http://localhost:8080/api/news`, { method: "GET" })
+    fetch(`http://localhost:4000/api/news`, { method: "GET" })
       .then(data => data.json())
       .then(body => {
         this.items = body.result;

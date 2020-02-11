@@ -2,7 +2,9 @@
   <div>
     <v-dialog v-model="syncedDialog" width="500" @blur="resetDialog()">
       <v-card>
-        <v-card-text class="description">Description: {{ syncedItem.description }}</v-card-text>
+        <v-card-text class="description"
+          >Description: {{ syncedItem.description }}</v-card-text
+        >
 
         <iframe
           width="550"
@@ -23,7 +25,8 @@
               dialog2 = !dialog2;
               getComments();
             "
-          >comment</v-btn>
+            >comment</v-btn
+          >
         </v-card-actions>
       </v-card>
     </v-dialog>
@@ -36,7 +39,12 @@
             </v-card-actions>-->
             <v-card-title>Share your thoughts</v-card-title>
             <div class="post-info">
-              <v-text-field v-model="name" :counter="20" label="Name" outlined></v-text-field>
+              <v-text-field
+                v-model="name"
+                :counter="20"
+                label="Name"
+                outlined
+              ></v-text-field>
               <v-textarea
                 outlined
                 name="input-7-1"
@@ -48,26 +56,30 @@
               ></v-textarea>
               <v-card-actions>
                 <v-spacer></v-spacer>
-                <v-btn color="#EEEEEE" @click="createComment();">Post comment</v-btn>
+                <v-btn color="#EEEEEE" @click="createComment()"
+                  >Post comment</v-btn
+                >
               </v-card-actions>
               <v-card-title>Comments</v-card-title>
               <v-card class="comments" v-if="!comments.length" outlined>
                 <v-card-text>No comments</v-card-text>
               </v-card>
-              <v-card v-else v-for="(comment, i) in comments" :key="i" class="comments" outlined>
+              <v-card
+                v-else
+                v-for="(comment, i) in comments"
+                :key="i"
+                class="comments"
+                outlined
+              >
                 <v-list-item three-line>
                   <v-list-item-content>
                     <div class="comment-txt">
                       <v-list-item-title>{{ comment.name }}</v-list-item-title>
                       <v-card-text style="height: 50px">
-                        {{
-                        comment.body
-                        }}
+                        {{ comment.body }}
                       </v-card-text>
                       <v-list-item-subtitle>
-                        {{
-                        new Date(comment.date).toLocaleString()
-                        }}
+                        {{ new Date(comment.date).toLocaleString() }}
                       </v-list-item-subtitle>
                     </div>
                     <v-card-actions>
@@ -113,7 +125,7 @@ export default class Comments extends Vue {
       body: this.body
     };
 
-    fetch("http://localhost:8080/api/comment/post_comment", {
+    fetch("http://localhost:4000/api/comment/post_comment", {
       method: "POST",
       headers: {
         "Content-Type": "application/json"
@@ -133,7 +145,7 @@ export default class Comments extends Vue {
 
   getComments() {
     fetch(
-      `http://localhost:8080/api/comment/get_comments/${this.syncedItem.title}`,
+      `http://localhost:4000/api/comment/get_comments/${this.syncedItem.title}`,
       {
         method: "GET"
       }
