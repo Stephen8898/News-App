@@ -24,7 +24,7 @@ mongoose.connection.on("connected", () => {
 //Enviromental var
 dotenv.config();
 
-app.use(express.static(path.join(_dirname, "client/build")));
+app.use(express.static(path.join(__dirname, "client/news-app/dist")));
 app.use(bodyparser.json());
 app.use(bodyparser.urlencoded({ extended: false }));
 app.use(cors());
