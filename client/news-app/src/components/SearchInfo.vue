@@ -2,16 +2,13 @@
   <div style="margin-top: 20px">
     <v-card color="transparent" class="mx-auto search-card" max-width="fit">
       <v-list-item-content>
-        <v-list-item-title class="headline mb-1" style="text-align: center"
-          >Search for top news on any Topic</v-list-item-title
-        >
+        <v-list-item-title
+          class="headline mb-1"
+          style="text-align: center"
+        >Search for top news on any Topic</v-list-item-title>
       </v-list-item-content>
       <div style="margin:10px">
-        <v-text-field
-          v-model="value"
-          v-on:keyup.13="search"
-          label="Search"
-        ></v-text-field>
+        <v-text-field v-model="value" v-on:keyup.13="search" label="Search"></v-text-field>
       </div>
     </v-card>
 
@@ -32,19 +29,12 @@
 
               <!-- <v-card-text v-text="item.description"></v-card-text> -->
 
-              <v-card-subtitle v-if="item.author"
-                >By {{ item.author }}</v-card-subtitle
-              >
+              <v-card-subtitle v-if="item.author">By {{ item.author }}</v-card-subtitle>
               <v-card-subtitle v-else>N/A</v-card-subtitle>
             </div>
 
             <v-avatar class="ma-3" size="125" tile>
-              <v-img
-                v-if="item.image"
-                width="250px"
-                height="auto"
-                :src="item.image"
-              ></v-img>
+              <v-img v-if="item.image" width="250px" height="auto" :src="item.image"></v-img>
             </v-avatar>
           </div>
         </v-card>
@@ -80,13 +70,10 @@ export default class SearchInfo extends Vue {
       .then(data => data.json())
       .then(body => {
         this.items = body.result;
-        console.log(this.items);
       })
       .catch(err => {
         throw err;
       });
-
-    this.value = "";
   }
 
   modal(item: any) {
