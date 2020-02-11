@@ -113,7 +113,7 @@ export default class Comments extends Vue {
       body: this.body
     };
 
-    fetch("http://localhost:3000/api/comment/post_comment", {
+    fetch("http://localhost:8080/api/comment/post_comment", {
       method: "POST",
       headers: {
         "Content-Type": "application/json"
@@ -133,7 +133,7 @@ export default class Comments extends Vue {
 
   getComments() {
     fetch(
-      `http://localhost:3000/api/comment/get_comments/${this.syncedItem.title}`,
+      `http://localhost:8080/api/comment/get_comments/${this.syncedItem.title}`,
       {
         method: "GET"
       }
